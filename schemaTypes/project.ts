@@ -30,10 +30,17 @@ export default defineType({
         }),
         defineField({
             name: 'description',
-            title: 'Description',
+            title: 'Short Description',
             type: 'text',
             rows: 3,
+            description: 'Used for Gateway cards and SEO summaries',
             validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+            name: 'body',
+            title: 'Detailed Content',
+            type: 'blockContent',
+            description: 'Full project details for the Projects Hub detail page',
         }),
         defineField({
             name: 'category',
