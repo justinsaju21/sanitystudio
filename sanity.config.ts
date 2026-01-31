@@ -1,10 +1,7 @@
 import { defineConfig } from 'sanity'
-import { structureTool } from 'sanity/structure'
+import { structureTool, type StructureBuilder } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemaTypes'
-
-// Helper to define text-based structure icons if needed, or use defaults
-// We will use default icons for simplicity
 
 export default defineConfig({
   name: 'default',
@@ -15,7 +12,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: (S) =>
+      structure: (S: StructureBuilder) =>
         S.list()
           .title('Content Studio')
           .items([
@@ -35,7 +32,7 @@ export default defineConfig({
                       .child(
                         S.documentTypeList('author')
                           .title('Select Author')
-                          .child(authorId =>
+                          .child((authorId: string) =>
                             S.documentList()
                               .title('Projects')
                               .filter('_type == "project" && author._ref == $authorId')
@@ -63,7 +60,7 @@ export default defineConfig({
                       .child(
                         S.documentTypeList('author')
                           .title('Select Author')
-                          .child(authorId =>
+                          .child((authorId: string) =>
                             S.documentList()
                               .title('Posts')
                               .filter('_type == "post" && author._ref == $authorId')
