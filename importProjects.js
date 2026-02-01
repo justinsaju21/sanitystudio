@@ -191,10 +191,11 @@ async function importData() {
                 _type: 'slug',
                 current: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
             },
-            author: {
+            authors: [{
                 _type: 'reference',
-                _ref: authorId
-            },
+                _ref: authorId,
+                _key: `author-${authorId}` // Important for arrays
+            }],
             description: project.description,
             category: project.category,
             tags: project.tags,
